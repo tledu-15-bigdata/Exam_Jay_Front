@@ -37,18 +37,18 @@
       <div class="tc" style="margin-top:-10px;"></div>
       <div class="boxbd mt20">
         <label class="label">
-          <input type="text" name="userAcc" value="" class="loginipt key user">
+          <input type="text" name="userAcc" value="" class="loginipt key user" id="acc">
           <span class="text">请输入您的账号</span>
         </label>
         <label class="label">
-          <input type="text" name="userName" value="" class="loginipt key Nickname">
+          <input type="text" name="userName" value="" class="loginipt key Nickname" id="name">
           <span class="text">请输入您的昵称</span>
         </label>
         <label class="label">
-          <input type="password" name="userPwd" value="" class="loginipt key pwd">
+          <input type="password" name="userPwd" value="" class="loginipt key pwd" id="pwd">
           <span class="text">请输入您的密码</span>
         </label>
-        <button type="submit" name="login" value="" class="button btn-reg" onClick="location.href='mem.html'">立即注册</button>
+        <button type="submit" name="login" value="" class="button btn-reg" onclick="zhuce()">立即注册</button>
         <p class="mt20 tc">注册则表示同意<a href="#" class="o">《会员条款》</a></p>
         <div class="ohter"><span class="ohtertxt">或</span></div>
         <div class="Prompt" style="padding:0 0 10px">使用以上社交网络帐号登录</div>
@@ -71,6 +71,38 @@
     <div class="orc fr"><img src="images/img2.jpg" width="63"><img src="images/img3.jpg" width="63"></div>
   </div>
 </div>
+</body>
 <script src="js/jquery.js"></script>
 <script src="js/Action.js"></script>
+<script>
+function zhuce(){
+  var dataJSON={}
+  dataJSON.userAcc=$("#acc").val();
+  dataJSON.userPwd=$("#pwd").val();
+  dataJSON.userName=$("#name").val();
+  $.ajax({
+    url:'http://192.168.43.2:8080/Exam_Jay_SSM/userRegister',
+    type:'POST',
+    data:JSON.stringify(dataJSON),
+    contentType:'application/json;charset=UTF-8',
+    success:function(result){
+      console.log(result)
+      if (result==1) {
+        alert("注册成功,请登录")
+        window.location.href="login.html"
+      }
+      if (result==2){
+        alert("账号不能为空或者账号已经存在，请重试！")
+      }
+
+    },
+    error:function(){
+
+    }
+
+
+
+  });
+}
+</script>
 </html>
