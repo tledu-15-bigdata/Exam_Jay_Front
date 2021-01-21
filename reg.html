@@ -81,7 +81,7 @@ function zhuce(){
   dataJSON.userPwd=$("#pwd").val();
   dataJSON.userName=$("#name").val();
   $.ajax({
-    url:'http://192.168.43.2:8080/Exam_Jay_SSM/userRegister',
+    url:'http://192.168.43.189:8080/Exam_Jay_SSM/userRegister',
     type:'POST',
     data:JSON.stringify(dataJSON),
     contentType:'application/json;charset=UTF-8',
