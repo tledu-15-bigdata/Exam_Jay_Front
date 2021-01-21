@@ -18,7 +18,7 @@ function reLoad(){
 function load(){
     //bt加载数据的代码
 
-    let url="http://localhost:8080/SpringMVC_1/goodsSelect"
+    let url="http://localhost:8080/Exam_Jay_SSM/selectEx"
 
 
 
@@ -58,7 +58,7 @@ function load(){
                     },
                     {
                             title:'商品名称',
-                            field:'name',
+                            field:'examinationTitle',
                             align:'center',//列名称、列数据居中 水平居中
                             halign:'center', //垂直居中
                             width:'50px',//设置列宽
