@@ -1,17 +1,15 @@
-$(function(){
 
-    load();
-
+$(function () {
+    load()
 })
-
 function reLoad(){
-    $("#table1").bootstrapTable("refresh");
+    $("#table3").bootstrapTable("refresh");
 }
 
 function load(){
-    $("#table1").bootstrapTable({
+    $("#table3").bootstrapTable({
         // url:"http://192.168.43.189:8080/Exam_Jay_SSM/selectEx",
-        url:'http://localhost:8080/Exam_Jay_SSM/selectEx',
+        url:'http://localhost:8080/Exam_Jay_SSM/selectXuan',
         method:"POST",
         dataType:"JSON",
         striped : true, //是否显示行间隔色

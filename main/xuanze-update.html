@@ -121,7 +121,7 @@
                         }
                 }
                 dataJSON.examinationDegree=value2;
-
+                dataJSON.examinationId=localStorage.getItem("examinationId");
                 $.ajax({
                         // url:'http://192.168.43.189:8080/Exam_Jay_SSM/insertEx',
                         url:'http://localhost:8080/Exam_Jay_SSM/updateEx',

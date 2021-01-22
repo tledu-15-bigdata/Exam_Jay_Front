@@ -32,7 +32,7 @@
           <tr>
                   <td></td>
                   <td>正确答案</td>
-                  <td><textarea name="title" id="answer1" cols="25" rows="4"></textarea></td>
+                  <td><textarea name="title" id="answer" cols="25" rows="4"></textarea></td>
           </tr>
           <tr>
                   <td></td>
@@ -77,7 +77,8 @@
                 var dataJSON={};
                 dataJSON.examinationTitle=$("#jiandatitle").val();
                 dataJSON.examinationType="简答题";
-                dataJSON.examinationAnswer=$("#answer1").val();
+                dataJSON.examinationAnswer=$("#answer").val();
+                alert($("#answer").val())
                 dataJSON.examinationScore=$("#score").val();
                 var value1="";
                 var degree=document.getElementsByName("degree");
@@ -87,6 +88,7 @@
                         }
                 }
                 dataJSON.examinationDegree=value1;
+                dataJSON.examinationId=localStorage.getItem("examinationId");
                 
                 $.ajax({
                         // url:'http://192.168.43.189:8080/Exam_Jay_SSM/insertEx',

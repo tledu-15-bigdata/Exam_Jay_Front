@@ -35,7 +35,6 @@
 <!--        <label class="layui-form-label">被测时间</label>-->
 
         <div class="layui-input-inline" style="width:150px">
-<!--            <button id="jiandati" class="layui-btn">简答题</button>-->
             <a href="jianda.html" target="main" class="layui-btn">简答题</a>
             <!--       <input type="text" name="name"  placeholder="被测时间" autocomplete="off" class="layui-input">-->
         </div>
@@ -44,7 +43,6 @@
         </div>
         <div class="layui-input-inline" style="width:80px">
             <a href="sousuo.html" target="main" class="layui-btn" id="sousuo">搜索</a>
-<!--          <button class="layui-btn"  id="sousuo">搜索</button>-->
         </div>
       </div>
     </div>
@@ -58,8 +56,8 @@
     </ul>
 <!--    <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>-->
   </div>
-  <table id="table1"></table>
-<!--    <table id="table2"></table>-->
+<!--  <table id="table1"></table>-->
+    <table id="table2"></table>
 <!--    <table id="table3"></table>-->
 <!--    <table id="table4"></table>-->
 
@@ -89,8 +87,6 @@
 <script src="../bootstrap-table/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="../js/layer.js"></script>
 <script src="./js/x-layui.js" charset="utf-8"></script>
-
-<script src="../bootstrap-table/js/btTable.js"></script>
 <script>
     $("#sousuo").click(function () {
         var str=$("#gjz").val();
@@ -99,7 +95,8 @@
         // alert(localStorage.getItem("mark"))
     })
 </script>
-<!--<script src="../bootstrap-table/js/btTable1.js"></script>-->
+<!--<script src="../bootstrap-table/js/btTable.js"></script>-->
+<script src="../bootstrap-table/js/btTable1.js"></script>
 <!--<script src="../bootstrap-table/js/btTable2.js"></script>-->
 <!--<script src="../bootstrap-table/js/btTable3.js"></script>-->
 </html>
