@@ -39,6 +39,7 @@
 .x-body{
   border: 1px solid red;
   padding: 20px;
+  /*background: url("../images/img1.jpg");*/
 }
 .x-nav{
   border: 1px solid black;

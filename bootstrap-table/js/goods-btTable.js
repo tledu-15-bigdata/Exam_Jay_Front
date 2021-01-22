@@ -129,17 +129,20 @@ function fetchDetail(id){
     }
 }
 
-function removeData(id){
-    if(id){
-        let url="http://localhost:8080/SSMDemo/goodsRemove2/"+id
+function removeData(examinationTitle){
+    if(examinationTitle){
+        let url="http://localhost:8080/SSMDemo/goodsRemove2/"
+        var dataJSON={};
+        dataJSON.examinationTitle=examinationTitle;
         $.ajax({
             url:url,
+            data:JSON.stringify(dataJSON),
             dataType:'json',
             type:'POST',
             success:function(result){
                 console.log(result)
                 //将返回的result数据，渲染到页面上
-               if(result.code=="1"){
+               if(result.code==1){
                     //删除成功-->重新渲染表格的数据
                    reLoad()
                }else{

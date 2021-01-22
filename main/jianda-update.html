@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>题库管理-添加选择题</title>
+<title>题库管理-添加简答题</title>
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -13,10 +13,10 @@
 </head>
 
 <body>
-<div class="x-body" >
+<div class="x-body">
   <table id="xuanze">
 <!--          <tr>-->
-<!--                  <td><h6><b>添加选择题</b></h6></td>-->
+<!--                  <td><h6><b>添加简答题</b></h6></td>-->
 <!--          </tr>-->
           <tr>
                   <td></td>
@@ -26,36 +26,13 @@
           <tr>
                   <td></td>
                   <td></td>
-                  <td><textarea name="title" id="xuanzetitle" cols="25" rows="4"></textarea></td>
+                  <td><textarea name="title" id="jiandatitle" cols="25" rows="4"></textarea></td>
           </tr>
-          <tr>
-                  <td></td>
-                  <td></td>
-                  <td><b>A</b> <br><textarea name="title" id="Atitle" cols="25" rows="2"></textarea></td>
-          </tr>
-          <tr>
-                  <td></td>
-                  <td></td>
-                  <td><b>B</b> <br><textarea name="title" id="Btitle" cols="25" rows="2"></textarea></td>
-          </tr>
-          <tr>
-                  <td></td>
-                  <td></td>
-                  <td><b>C</b> <br><textarea name="title" id="Ctitle" cols="25" rows="2"></textarea></td>
-          </tr>
-          <tr>
-                  <td></td>
-                  <td></td>
-                  <td><b>D</b> <br><textarea name="title" id="Dtitle" cols="25" rows="2"></textarea></td>
-          </tr>
+
           <tr>
                   <td></td>
                   <td>正确答案</td>
-                  <td><input type="radio" name="answer" value="A">A
-                          <input type="radio" name="answer" value="B">B
-                          <input type="radio" name="answer" value="C">C
-                          <input type="radio" name="answer" value="D">D
-                  </td>
+                  <td><textarea name="title" id="answer1" cols="25" rows="4"></textarea></td>
           </tr>
           <tr>
                   <td></td>
@@ -75,7 +52,7 @@
           <tr>
                   <td></td>
                   <td></td>
-                  <td><button id="tijiao">提交</button></td>
+                  <td><button id="tijiao">修改</button></td>
           </tr>
   </table>
         <div id="shishi">
@@ -98,20 +75,9 @@
 <script>
         $("#tijiao").click(function (){
                 var dataJSON={};
-                dataJSON.examinationTitle=$("#xuanzetitle").val();
-                dataJSON.examinationA=$("#Atitle").val();
-                dataJSON.examinationB=$("#Btitle").val();
-                dataJSON.examinationC=$("#Ctitle").val();
-                dataJSON.examinationD=$("#Dtitle").val();
-                dataJSON.examinationType="选择题";
-                var value="";
-                var answer=document.getElementsByName("answer");
-                for (i=0;i<answer.length;i++){
-                        if (answer[i].checked==true){
-                                value=answer[i].value;
-                        }
-                }
-                dataJSON.examinationAnswer=value;
+                dataJSON.examinationTitle=$("#jiandatitle").val();
+                dataJSON.examinationType="简答题";
+                dataJSON.examinationAnswer=$("#answer1").val();
                 dataJSON.examinationScore=$("#score").val();
                 var value1="";
                 var degree=document.getElementsByName("degree");
@@ -121,23 +87,22 @@
                         }
                 }
                 dataJSON.examinationDegree=value1;
-
+                
                 $.ajax({
                         // url:'http://192.168.43.189:8080/Exam_Jay_SSM/insertEx',
-                        url:'http://localhost:8080/Exam_Jay_SSM/insertEx',
+                        url:'http://localhost:8080/Exam_Jay_SSM/updateEx',
                         type:'POST',
                         data:JSON.stringify(dataJSON),
                         contentType:'application/json;charset=UTF-8',
                         success:function(result){
                                 console.log(result)
                                 if (result==1) {
-                                        layer.alert("添加成功！",function(){
+                                        layer.alert("修改成功！",function(){
                                                 window.parent.location.reload();//刷新父页面
                                                 parent.layer.close(index);//关闭弹出层
                                         });
-                                }
-                                if (result==2){
-                                        layer.msg("内容不能为空，请重试！")
+                                }else{
+                                        layer.msg("内容不能为空或重复，请重试！")
                                 }
                         },
                         error:function(){
