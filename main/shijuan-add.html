@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>试卷管理-添加试卷</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="./css/x-admin.css" media="all">
+</head>
+
+<body>
+<div class="x-body" >
+    <table id="shijuan">
+
+
+        <tr>
+            <td></td>
+            <td>试卷名称:</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><textarea name="shijuan-name"   id="shijuanname" cols="25" rows="4"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><b>试卷分组:</b> <br><textarea name="shijuan" id="classify" cols="25" rows="2"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><b>考试规定时长:</b> <br><textarea name="time"  id="biao-time" cols="25" rows="2"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><b>考试开始时间:</b> <br><textarea name="start-time"  id="start-time" cols="25" rows="2"></textarea></td>
+        </tr>
+
+
+        <tr>
+            <td></td>
+            <td>试卷类型:</td>
+            <td><input type="radio" name="shi" value="普通试卷">普通试卷
+                <input type="radio" name="shi" value="随机试卷">随机试卷
+
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>出题方式:</td>
+            <td><input type="radio" name="chu" value="固定出题">固定出题
+                <input type="radio"  name="chu" value="随机出题">随机出题
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><button id="tijiao">提交</button></td>
+        </tr>
+    </table>
+    <div id="shishi">
+
+    </div>
+
+</div>
+<script src="./lib/layui/layui.js" charset="utf-8">
+</script>
+<script src="./js/x-layui.js" charset="utf-8">
+</script>
+<script src="../js/jquery.min.js"></script>
+<script>
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form()
+            ,layer = layui.layer;
+    });
+</script>
+<script>
+    $("#tijiao").click(function (){
+        var dataJSON={};
+        dataJSON.paperName=$("#shijuanname").val();
+        dataJSON.paperClassify=$("#classify").val();
+        dataJSON.paperTime=$("#biao-time").val();
+        dataJSON.startTime=$("#start-time").val();
+        var value="";
+        var answer=document.getElementsByName("shi");
+        for (i=0;i<answer.length;i++){
+            if (answer[i].checked==true){
+                value=answer[i].value;
+            }
+        }
+        dataJSON.paperType=value;
+        var value1="";
+        var degree=document.getElementsByName("chu");
+        for (i=0;i<degree.length;i++){
+            if (degree[i].checked==true){
+                value1=degree[i].value;
+            }
+        }
+        dataJSON.questionMethod=value1;
+
+        $.ajax({
+            // url:'http://192.168.43.189:8080/Exam_Jay_SSM/insertEx',
+            url:'http://localhost:8080/Exam_Jay_SSM/paperAdd',
+            type:'POST',
+            data:JSON.stringify(dataJSON),
+            contentType:'application/json;charset=UTF-8',
+            success:function(result){
+                console.log(result)
+                if (result==1) {
+                    layer.alert("添加成功！",function(){
+                        window.parent.location.reload();//刷新父页面
+                        parent.layer.close(index);//关闭弹出层
+                    });
+                }
+                if (result==2){
+                    layer.msg("内容不能为空，请重试！")
+                }
+            },
+            error:function(){
+
+            }
+        });
+
+    })
+</script>
+</body>
+</html>

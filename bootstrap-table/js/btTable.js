@@ -102,7 +102,7 @@ function modifyGoods(examinationTitle,examinationA,examinationB,
         //打开 选择题弹出层
         layer.open({
             type:2,//可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）。
-            title:'商品修改',
+            title:'选择题修改',
             maxmin:false,
             shadeClose:false,
             area:[1000+'px',($(window).height() - 50)+'px'],//弹出层的宽高

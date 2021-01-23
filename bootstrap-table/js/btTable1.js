@@ -28,7 +28,7 @@ function load(){
             var temp = {
                 offset :params.offset,// SQL语句起始索引
                 pageNumber : params.limit,  // 每页显示数量
-                e_title : str
+                e_title : str//往后端传数据
             };
             return JSON.stringify(temp);
         },
