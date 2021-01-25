@@ -94,8 +94,9 @@ function load(){
                         +row.questionMethod+'\',\''+row.paperId+'\')">修改试卷</a>'
                     let u='<a href="javascript:void(0);" onclick="startPaper(\''+row.paperName+'\')">开启试卷</a>'
                     let n='<a href="javascript:void(0);" onclick="stopPaper(\''+row.paperName+'\')">关闭试卷</a>'
+                    let c='<a href="javascript:void(0);" onclick="lookPaper(\''+row.paperId+'\')">查看试卷</a>'
 
-                    return d+" "+m+" "+u+" "+n/*+" "+detail*/
+                    return d+" "+m+" "+u+" "+n+" "+c/*+" "+detail*/
                 }
             }
         ]
@@ -225,4 +226,17 @@ function removeData(paperName){
     }else{
         alert("数据有问题！无法删除");
     }
+}
+
+
+
+//查看试卷
+function lookPaper(paperId){
+    // let url="http://localhost:8080/Exam_Jay_SSM/papercSelect"
+    localStorage.setItem("paperId",paperId)
+
+    window.location.href="paperContext.html"
+
+
+
 }

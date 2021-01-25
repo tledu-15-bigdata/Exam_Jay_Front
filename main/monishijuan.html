@@ -29,21 +29,21 @@
                 <!--        <label class="layui-form-label">姓名</label>-->
                 <div class="layui-input-inline" style="width:100px">
                     <!--            <button id="xuanzeti" class="layui-btn">选择题</button>-->
-                    <a href="xuanze.html" target="main" class="layui-btn">选择题</a>
+                    <a href="putongshiti.html.html" target="main" class="layui-btn">普通试卷</a>
                     <!--          <input type="text" name="name"  placeholder="姓名" autocomplete="off" class="layui-input">-->
                 </div>
                 <!--        <label class="layui-form-label">被测时间</label>-->
 
                 <div class="layui-input-inline" style="width:150px">
                     <!--            <button id="jiandati" class="layui-btn">简答题</button>-->
-                    <a href="jianda.html" target="main" class="layui-btn">简答题</a>
+                    <a href="monishijuan.html" target="main" class="layui-btn">模拟试卷</a>
                     <!--       <input type="text" name="name"  placeholder="被测时间" autocomplete="off" class="layui-input">-->
                 </div>
                 <div class="layui-input-inline" style="width:200px">
-                    <input type="text" name="link" id="gjz" placeholder="关键字搜索" autocomplete="off" class="layui-input">
+                    <input type="text" name="link" id="gjz" placeholder="试卷名称关键字搜索" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-input-inline" style="width:80px">
-                    <a href="sousuo.html" target="main" class="layui-btn" id="sousuo">搜索</a>
+                    <a href="shijuansousuo.html" target="main" class="layui-btn" id="sousuo">搜索</a>
                     <!--          <button class="layui-btn"  id="sousuo">搜索</button>-->
                 </div>
             </div>
@@ -95,7 +95,7 @@
     $("#sousuo").click(function () {
         var str=$("#gjz").val();
 
-        localStorage.setItem("mark",str);
+        localStorage.setItem("mark",str1);
         // alert(localStorage.getItem("mark"))
     })
 </script>

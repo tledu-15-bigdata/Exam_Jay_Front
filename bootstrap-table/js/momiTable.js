@@ -11,7 +11,7 @@ function reLoad(){
 function load(){
     $("#tableshi").bootstrapTable({
         // url:"http://192.168.43.189:8080/Exam_Jay_SSM/selectEx",
-        url:'http://localhost:8080/Exam_Jay_SSM/paperSelectAll',
+        url:'http://localhost:8080/Exam_Jay_SSM/paperSelectMoni',
         method:"POST",
         dataType:"JSON",
         striped : true, //是否显示行间隔色

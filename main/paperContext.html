@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>试卷内容试题部分</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="./css/x-admin.css" media="all">
+    <link rel="stylesheet" href="css/pag.css" media="all">
+    <link rel="stylesheet" href="../css/layer-css/default/layer.css">
+    <link rel="stylesheet" href="../bootstrap-table/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap-table/css/bootstrap-table/bootstrap-table.min.css">
+
+</head>
+<body>
+<div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>试卷管理</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
+<div class="x-body">
+    <form class="layui-form x-center" action="" style="width:85%">
+        <div class="layui-form-pane">
+            <div class="layui-form-item">
+                <!--        <label class="layui-form-label">编号</label>-->
+                <!--        <div class="layui-input-inline" style="width:100px">-->
+                <!--          <input type="text" name="name"  placeholder="编号" autocomplete="off" class="layui-input">-->
+                <!--        </div>-->
+                <!--        <label class="layui-form-label">姓名</label>-->
+<!--                <div class="layui-input-inline" style="width:100px">-->
+<!--                    &lt;!&ndash;            <button id="xuanzeti" class="layui-btn">选择题</button>&ndash;&gt;-->
+<!--                    <a href="putongshiti.html.html" target="main" class="layui-btn">题库选题</a>-->
+<!--                    &lt;!&ndash;          <input type="text" name="name"  placeholder="姓名" autocomplete="off" class="layui-input">&ndash;&gt;-->
+<!--                </div>-->
+<!--                &lt;!&ndash;        <label class="layui-form-label">被测时间</label>&ndash;&gt;-->
+
+<!--                <div class="layui-input-inline" style="width:150px">-->
+<!--                    &lt;!&ndash;            <button id="jiandati" class="layui-btn">简答题</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a href="monishijuan.html" target="main" class="layui-btn">模拟试卷</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;       <input type="text" name="name"  placeholder="被测时间" autocomplete="off" class="layui-input">&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="layui-input-inline" style="width:200px">-->
+<!--&lt;!&ndash;                    <input type="text" name="link" id="gjz" placeholder="试卷名称关键字搜索" autocomplete="off" class="layui-input">&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="layui-input-inline" style="width:80px">-->
+<!--&lt;!&ndash;                    <a href="shijuansousuo.html" target="main" class="layui-btn" id="sousuo">搜索</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;          <button class="layui-btn"  id="sousuo">搜索</button>&ndash;&gt;-->
+<!--                </div>-->
+            </div>
+        </div>
+    </form>
+
+    <div class="tools">
+        <ul class="toolbar">
+            <!--      <li><span><img src="images/t03.png" /></span>批量删除</li>-->
+            <li onclick="user_management_add('题库选题','tikuxuanti.html','1000','600')"><span><img src="images/t01.png" /></span>题库选题</li>
+            <!--            <li onclick="user_management_add('添加简答题','jianda-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加简答</li>-->
+        </ul>
+        <!--    <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>-->
+    </div>
+    <div>
+
+        <table id="tab" border="1px solid black" width="1200px">
+
+
+        </table>
+        <button id="butshanchu" onclick="butDelete()">删除所选题目</button>
+    </div>
+<!--    <table id="tableshi"></table>-->
+    <!--    <table id="table2"></table>-->
+    <!--    <table id="table3"></table>-->
+    <!--    <table id="table4"></table>-->
+
+</div>
+<br />
+<br />
+<br />
+
+</body>
+
+
+<script src="../bootstrap-table/js/jquery-3.2.1.min.js"></script>
+
+
+<script>
+
+    /*用户-添加*/
+    function user_management_add(title,url,w,h){
+        x_admin_show(title,url,w,h);
+    }
+
+</script>
+<script type="text/javascript">
+    $('.tablelist tbody tr:odd').addClass('odd');
+</script>
+<script src="../bootstrap-table/js/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../bootstrap-table/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../js/layer.js"></script>
+<script src="./js/x-layui.js" charset="utf-8"></script>
+
+<script src="../bootstrap-table/js/shijuanComtext.js"></script>
+<script>
+    // $("#sousuo").click(function () {
+    //     var str=$("#gjz").val();
+    //
+    //     localStorage.setItem("mark",str1);
+    //     // alert(localStorage.getItem("mark"))
+    // })
+</script>
+
+<script>
+    function butDelete(){
+        var check_value=""
+       $("input[name='ti']:checked").each(function (){
+            check_value+=$(this).next().text()+","
+       })
+        alert(check_value)
+        var dataJSON={}
+        dataJSON.papercId=check_value;
+        $.ajax({
+            url:'http://localhost:8080/Exam_Jay_SSM/papercDelete',
+            type:'POST',
+            data:JSON.stringify(dataJSON),
+            contentType:'application/json;charset=UTF-8',
+            success:function(result){
+                console.log(result)
+                // if (result==1) {
+                //     // alert("登录成功！")
+                //     window.location.href="main/index.html"
+                // }
+                // if (result==2){
+                //     alert("账号不能为空或者账号密码有误，请重试！")
+                // }
+
+            },
+            error:function(){
+
+            }
+        })
+    }
+
+
+</script>
+<!--<script src="../bootstrap-table/js/btTable1.js"></script>-->
+<!--<script src="../bootstrap-table/js/btTable2.js"></script>-->
+<!--<script src="../bootstrap-table/js/btTable3.js"></script>-->
+</html>

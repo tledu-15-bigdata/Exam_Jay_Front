@@ -11,7 +11,7 @@ function reLoad(){
 function load(){
     $("#tableshi").bootstrapTable({
         // url:"http://192.168.43.189:8080/Exam_Jay_SSM/selectEx",
-        url:'http://localhost:8080/Exam_Jay_SSM/paperSelectPutong',
+        url:'http://localhost:8080/Exam_Jay_SSM/paperSelectMohu',
         method:"POST",
         dataType:"JSON",
         striped : true, //是否显示行间隔色
@@ -25,7 +25,8 @@ function load(){
         queryParams : function(params) {//上传服务器的参数
             var temp = {
                 offset :params.offset,// SQL语句起始索引
-                pageNumber : params.limit  // 每页显示数量
+                pageNumber : params.limit, // 每页显示数量
+                _title : str1//往后端传数据
             };
             return JSON.stringify(temp);
         },
