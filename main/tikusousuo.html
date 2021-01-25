@@ -48,7 +48,7 @@
         </ul>
         <!--    <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>-->
     </div>
-    <table id="tabletiku"></table>
+    <table id="table3"></table>
 
 
 </div>
@@ -75,19 +75,14 @@
 <script src="../js/layer.js"></script>
 <script src="./js/x-layui.js" charset="utf-8"></script>
 
-<script src="../bootstrap-table/js/shijuantiku.js"></script>
+<script src="../bootstrap-table/js/btTable1tikusousuo.js"></script>
 <script>
     function tikujianda(title,url,w,h){
-        // layer.closeAll()
         x_admin_show(title,url,w,h);
-
 
     }
     function tikuxuanze(title,url,w,h){
-
-
         x_admin_show(title,url,w,h);
-
 
     }
     function tikusousuo(title,url,w,h){
@@ -118,7 +113,6 @@
             contentType:'application/json;charset=UTF-8',
             success:function(result){
 
-                layer.closeAll()
                 window.location.reload();
 
 

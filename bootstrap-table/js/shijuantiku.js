@@ -34,6 +34,10 @@ function load(){
         columns:[
             {
                 title:'行号',
+                checkbox:true,
+            },
+            {
+                title:'行号',
                 align:"center",//水平居中
                 halign:"center",//垂直居中
                 formatter:function(value,row,index){
@@ -72,12 +76,6 @@ function load(){
                 width:'150px',//设置列宽
                 formatter:function(value,row,index){
                     // //如果将来 涉及到字符串数据传入参数  需要设置单引号
-                    // let d='<a href="javascript:void(0);" onclick="removeData(\''+row.examinationTitle+'\')">删除</a>'
-                    // let m='<a href="javascript:void(0);" onclick="modifyGoods(\''+row.examinationTitle+'\',\''
-                    //     +row.examinationA+'\',\''+row.examinationB+'\',\''+row.examinationC+'\',\''+row.examinationD+'\',\''
-                    //     +row.examinationAnswer+'\',\''+row.examinationScore+'\',\''+row.examinationDegree+'\',\''
-                    //     +row.examinationType+'\',\''+row.examinationId+'\')">修改</a>'
-                    // let detail='<a href="javascript:void(0);" onclick="fetchDetail(\''+row.id+'\')">详情</a>'
                     let t='<a href="javascript:void(0);" onclick="addData(\''+row.examinationTitle+'\',\''
                         +row.examinationA+'\',\''+row.examinationB+'\',\''+row.examinationC+'\',\''+row.examinationD+'\',\''
                         +row.examinationAnswer+'\',\''+row.examinationScore+'\',\''+row.examinationDegree+'\',\''
@@ -120,9 +118,9 @@ function addData(examinationTitle,examinationA,examinationB,
                 //删除成功-->重新渲染表格的数据
                 layer.msg("添加成功")
 
-                reLoad()
+
             }else{
-                alert("删除失败");
+                alert("添加失败，请重试");
             }
         },
         error:function(result){
