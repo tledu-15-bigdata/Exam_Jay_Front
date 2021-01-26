@@ -143,9 +143,9 @@ function modifyGoods(examinationTitle,examinationA,examinationB,
 
                 //在childBody子页面body区域中find（查找）input标签name属性是xxx的那个input对象，给其设置值为xxx
                 $(childBody).find('textarea[id=jiandatitle]').val(examinationTitle);
-                $(childBody).find('textarea[id=answer]').value=examinationAnswer;
+                $(childBody).find('textarea[id=answer]').val(examinationAnswer);
                 $(childBody).find('input[id=score]').val(examinationScore);
-                $(childBody).find('input[name=degree]').value=examinationDegree;
+                $(childBody).find('input[name=degree]').val(examinationDegree);
                 //获取子页面JS对象
             }
         });

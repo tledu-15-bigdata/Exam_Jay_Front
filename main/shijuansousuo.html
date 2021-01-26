@@ -52,7 +52,7 @@
 
     <div class="tools">
         <ul class="toolbar">
-            <!--      <li><span><img src="images/t03.png" /></span>批量删除</li>-->
+                  <li onclick="deleteAll()"><span><img src="images/t03.png" /></span>批量删除</li>
             <li onclick="user_management_add('添加试卷','shijuan-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加试卷</li>
             <!--            <li onclick="user_management_add('添加简答题','jianda-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加简答</li>-->
         </ul>
@@ -81,6 +81,32 @@
         x_admin_show(title,url,w,h);
     }
 
+</script>
+<script>
+    function deleteAll(){
+        var titles="";
+        $("input[type='checkbox']:checked").each(function () {
+            titles+=$(this).parent().next().next().next().text()+","
+            // console.log($(this).parent().next().next().next().text())
+        })
+        var dataJSON={};
+        dataJSON.papercTitle=titles;
+        $.ajax({
+            url:'http://localhost:8080/Exam_Jay_SSM/paperDeleteAll',
+            type:'POST',
+            data:JSON.stringify(dataJSON),
+            contentType:'application/json;charset=UTF-8',
+            success:function(result){
+
+                window.location.reload();
+
+
+            },
+            error:function(){
+
+            }
+        })
+    }
 </script>
 <script type="text/javascript">
     $('.tablelist tbody tr:odd').addClass('odd');

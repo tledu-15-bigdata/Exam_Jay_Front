@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />  <!--不可删除-->
+    <link rel="stylesheet" href="assets/css/ace.min.css" />   <!--不可删除-->
+    <link rel="stylesheet" href="css/style1.css"/>
+    <script src="js/jquery.js" ></script>
+
+    <title>考生登录</title>
+</head>
+
+<body class="login-layout Reg_log_style">
+<div class="logintop">
+    <span>欢迎使用天亮教育在线考试系统</span>
+
+</div>
+<div class="loginbody">
+    <div class="login-container">
+        <div class="center">
+<!--            <img src="images/logo1.png" />-->
+        </div>
+
+        <div class="space-6"></div>
+        <div class="space-6"></div>
+        <div class="space-6"></div>
+        <div class="space-6"></div>
+        <div class="space-6"></div>
+        <div class="space-6"></div>
+        <div class="position-relative">
+            <div id="login-box" class="login-box widget-box no-border visible">
+                <div class="widget-body">
+
+                    <div class="widget-main">
+                        <h4 class="header blue lighter bigger">
+                            <i class="icon-coffee green"></i>
+                            考生登录
+                        </h4>
+
+                        <div class="login_icon"><img src="images/user123.png" /></div>
+
+                        <form class="">
+                            <fieldset>
+                                <ul>
+                                    <li class="frame_style form_error">姓名：<input  placeholder="请输入姓名" type="text" id="username"/></li>
+                                    <li class="frame_style form_error">学号：<input  placeholder="请输入学号" type="text" id="userid"/></li>
+                                    <li class="frame_style form_error">邀请码：<input  placeholder="请输入邀请码" type="text" id="Codes_text"/></li>
+
+                                </ul>
+                                <div class="space"></div>
+
+                                <div class="clearfix">
+                                    <button type="button" class="width-35 pull-right btn btn-sm btn-primary" id="login_btn">
+                                        <i class="icon-key"></i>
+                                        登录
+                                    </button>
+                                </div>
+
+                            </fieldset>
+                        </form>
+
+
+                    </div><!-- /widget-main -->
+
+                </div><!-- /widget-body -->
+            </div><!-- /login-box -->
+        </div><!-- /position-relative -->
+    </div>
+</div>
+<!--<div class="loginbm">版权所有  2016  <a href="">南京思美软件系统有限公司</a> </div><strong></strong>-->
+</body>
+<script>
+    $("#login_btn").click(function () {
+        localStorage.setItem("username",$("#username").val());
+        localStorage.setItem("userid",$("#userid").val());
+        localStorage.setItem("paperid",$("#Codes_text").val());
+        localStorage.setItem("currentPage",1);
+
+        window.location.href="kaoshi-start.html"
+
+    })
+</script>
+</html>
+
+

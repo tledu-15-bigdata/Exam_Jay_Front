@@ -33,6 +33,9 @@ function load(){
 
         columns:[
             {
+                checkbox:true
+            },
+            {
                 title:'序号',
                 align:"center",//水平居中
                 halign:"center",//垂直居中

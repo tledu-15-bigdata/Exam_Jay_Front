@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天亮教育在线考试系统</title>
+    <link rel="stylesheet" href="css/kaoshi.css">
+    <link rel="stylesheet" href="../css/layer-css/default/layer.css">
+</head>
+<body>
+    <div id="zhengge">
+        <div id="shiti">
+            <table id="kaoti"></table>
+        </div>
+        <button class="huanye" id="beforePage">上一页</button>
+        <button class="huanye" id="nextPage">下一页</button>
+    </div>
+</body>
+<script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
+<script src="../js/layer.js"></script>
+
+<script>
+    $("#beforePage").click(function () {
+        $("#nextPage").text("下一页")
+        var currentPage=Number(localStorage.getItem("currentPage"))-1;
+        var paperId=localStorage.getItem("paperid");
+
+
+        if (currentPage<1){
+            currentPage=1;
+            layer.msg("到达首页了",{time:1000});
+
+        }
+        // 手动关闭
+
+        var dataJSON={}
+        dataJSON.currentPage=currentPage;
+        dataJSON.paperId=paperId;
+        $.ajax({
+            url:'http://localhost:8080/Exam_Jay_SSM/selectExam1',
+            type:'POST',
+            data:JSON.stringify(dataJSON),
+            contentType:'application/json;charset=UTF-8',
+            success:function(result){
+                $("#kaoti").html("");
+                var data=result.list[0];
+
+
+                if (data.papercType=="选择题"){
+                    var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+currentPage+"、</b>" + data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                        +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"+"<br>"+"&nbsp;"+"&nbsp;" +"A:"+"&nbsp;"+data.papercA+"<br>"+"&nbsp;"+"&nbsp;" +"B:"+"&nbsp;"+data.papercB+"<br>"+"&nbsp;"+"&nbsp;" +"C:"+"&nbsp;"+data.papercC+"<br>"+"&nbsp;"+"&nbsp;" +"D:"+"&nbsp;"+data.papercD+"<br>"
+                        +"<br>"+"<br>"+"答案:"+" <input type='text' id='answer'>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
+                }else{
+                    var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+ "<b>"+currentPage+"、</b>"+data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                        +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"
+                        +"答案:"+" <textarea id='answer' cols='30' rows='10'></textarea>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
+                }
+                //追加到table中
+                $("#kaoti").append(str);
+                var a = JSON.parse(localStorage.getItem("answers"));
+                $("#answer").val(a[currentPage]);
+                localStorage.setItem("totalPage",result.totalPage)
+                // currentPage=currentPage+1;
+                localStorage.setItem("currentPage",currentPage)
+            }
+        })
+    })
+    $("#nextPage").click(function () {
+
+        var currentPage=Number(localStorage.getItem("currentPage"))+1;
+        var totalPage=Number(localStorage.getItem("totalPage"));
+        var paperId=localStorage.getItem("paperid");
+        var userName=localStorage.getItem("username");
+        var userid=localStorage.getItem("userid");
+        var papercId=$("#span1").text()
+        var answer=$("#answer").val();
+        var answers = JSON.parse(localStorage.getItem("answers"))
+        answers[currentPage-1]=answer;
+        localStorage.setItem("answers",JSON.stringify(answers))
+        if (currentPage==totalPage+1){
+            alert("考试结束")
+        }
+        if (currentPage==totalPage){
+            $("#nextPage").text("提交")
+
+            var dataJSON={}
+            dataJSON.currentPage=currentPage;
+            dataJSON.paperId=paperId;
+            dataJSON.gradecName=userName;
+            dataJSON.gradecLoginid=userid;
+            dataJSON.gradecAnswer=answer;
+            dataJSON.papercId=papercId;
+
+            $.ajax({
+                url:'http://localhost:8080/Exam_Jay_SSM/selectExam1',
+                type:'POST',
+                data:JSON.stringify(dataJSON),
+                contentType:'application/json;charset=UTF-8',
+                success:function(result){
+                    $("#kaoti").html("");
+                    var data=result.list[0];
+
+                    if (data.papercType=="选择题"){
+                        var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+currentPage+"、</b>" + data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                            +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"+"<br>"+"&nbsp;"+"&nbsp;" +"A:"+"&nbsp;"+data.papercA+"<br>"+"&nbsp;"+"&nbsp;" +"B:"+"&nbsp;"+data.papercB+"<br>"+"&nbsp;"+"&nbsp;" +"C:"+"&nbsp;"+data.papercC+"<br>"+"&nbsp;"+"&nbsp;" +"D:"+"&nbsp;"+data.papercD+"<br>"
+                            +"<br>"+"<br>"+"答案:"+" <input type='text' id='answer'>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
+                    }else{
+                        var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+ "<b>"+currentPage+"、</b>"+data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                            +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"
+                            +"答案:"+" <textarea id='answer' cols='30' rows='10'></textarea>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
+                    }
+                    //追加到table中
+                    $("#kaoti").append(str);
+                    var a = JSON.parse(localStorage.getItem("answers"));
+                    $("#answer").val(a[currentPage]);
+                    // currentPage=currentPage+1;
+                    localStorage.setItem("currentPage",currentPage)
+
+                }
+
+            })
+
+        }else{
+
+            var dataJSON={};
+
+            dataJSON.currentPage=currentPage;
+            dataJSON.paperId=paperId;
+            dataJSON.gradecName=userName;
+            dataJSON.gradecLoginid=userid;
+            dataJSON.gradecAnswer=answer;
+            dataJSON.papercId=papercId;
+            $.ajax({
+                url:'http://localhost:8080/Exam_Jay_SSM/selectExam1',
+                type:'POST',
+                data:JSON.stringify(dataJSON),
+                contentType:'application/json;charset=UTF-8',
+                success:function(result){
+                    $("#kaoti").html("");
+                    var data=result.list[0];
+
+                    if (data.papercType=="选择题"){
+                        var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+currentPage+"、</b>" + data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                            +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"+"<br>"+"&nbsp;"+"&nbsp;" +"A:"+"&nbsp;"+data.papercA+"<br>"+"&nbsp;"+"&nbsp;" +"B:"+"&nbsp;"+data.papercB+"<br>"+"&nbsp;"+"&nbsp;" +"C:"+"&nbsp;"+data.papercC+"<br>"+"&nbsp;"+"&nbsp;" +"D:"+"&nbsp;"+data.papercD+"<br>"
+                            +"<br>"+"<br>"+"答案:"+" <input type='text' id='answer'>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
+                    }else{
+                        var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+ "<b>"+currentPage+"、</b>"+data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                            +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"
+                            +"答案:"+" <textarea id='answer' cols='30' rows='10'></textarea>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
+                    }
+                    //追加到table中
+                    $("#kaoti").append(str);
+                    var a = JSON.parse(localStorage.getItem("answers"));
+                    $("#answer").val(a[currentPage]);
+                    localStorage.setItem("totalPage",result.totalPage)
+                    // currentPage=currentPage+1;
+                    localStorage.setItem("currentPage",currentPage)
+                }
+            })
+        }
+
+
+
+    })
+    window.onload=function () {
+        var answers=new Array();
+        localStorage.setItem("answers",JSON.stringify(answers))
+        var currentPage=Number(localStorage.getItem("currentPage"));
+        var dataJSON={}
+        dataJSON.currentPage=currentPage;
+        dataJSON.paperId=localStorage.getItem("paperid");
+        $.ajax({
+            url:'http://localhost:8080/Exam_Jay_SSM/selectExam1',
+            type:'POST',
+            data:JSON.stringify(dataJSON),
+            contentType:'application/json;charset=UTF-8',
+            success:function(result){
+
+                var data=result.list[0];
+
+                if (data.papercType=="选择题"){
+                    var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+currentPage+"、</b>" + data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                        +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"+"<br>"+"&nbsp;"+"&nbsp;" +"A:"+"&nbsp;"+data.papercA+"<br>"+"&nbsp;"+"&nbsp;" +"B:"+"&nbsp;"+data.papercB+"<br>"+"&nbsp;"+"&nbsp;" +"C:"+"&nbsp;"+data.papercC+"<br>"+"&nbsp;"+"&nbsp;" +"D:"+"&nbsp;"+data.papercD+"<br>"
+                        +"<br>"+"<br>"+"答案:"+" <input type='text' id='answer'>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
+                }else{
+                    var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+ "<b>"+currentPage+"、</b>"+data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                        +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"
+                        +"答案:"+" <textarea id='answer' cols='30' rows='10'></textarea>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
+                }
+                //追加到table中
+                $("#kaoti").append(str);
+                var a = JSON.parse(localStorage.getItem("answers"));
+                $("#answer").val(a[currentPage]);
+                localStorage.setItem("totalPage",result.totalPage)
+                // currentPage=currentPage+1;
+                localStorage.setItem("currentPage",currentPage)
+            }
+        })
+
+
+    }
+</script>
+</html>

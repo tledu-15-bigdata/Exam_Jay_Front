@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="../css/layer-css/default/layer.css">
     <link rel="stylesheet" href="../bootstrap-table/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bootstrap-table/css/bootstrap-table/bootstrap-table.min.css">
-
+<!--    <link rel="stylesheet" href="./lib/layui/css/layui.css">-->
 </head>
 <body>
-<div class="x-nav"> <span class="layui-breadcrumb"> <a><cite>首页</cite></a> <a><cite>试卷管理</cite></a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
+<div class="x-nav"> <span> <a>首页</a>-- <a>试卷管理</a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
 <div class="x-body">
     <form class="layui-form x-center" action="" style="width:85%">
         <div class="layui-form-pane">
@@ -52,7 +52,7 @@
 
     <div class="tools">
         <ul class="toolbar">
-            <!--      <li><span><img src="images/t03.png" /></span>批量删除</li>-->
+                  <li onclick="deleteAll()"><span><img src="images/t03.png" /></span>批量删除</li>
             <li onclick="user_management_add('添加试卷','shijuan-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加试卷</li>
 <!--            <li onclick="user_management_add('添加简答题','jianda-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加简答</li>-->
         </ul>
@@ -98,6 +98,32 @@
         localStorage.setItem("mark",str1);
         // alert(localStorage.getItem("mark"))
     })
+</script>
+<script>
+    function deleteAll(){
+        var titles="";
+        $("input[type='checkbox']:checked").each(function () {
+            titles+=$(this).parent().next().next().next().text()+","
+            // console.log($(this).parent().next().next().next().text())
+        })
+        var dataJSON={};
+        dataJSON.papercTitle=titles;
+        $.ajax({
+            url:'http://localhost:8080/Exam_Jay_SSM/paperDeleteAll',
+            type:'POST',
+            data:JSON.stringify(dataJSON),
+            contentType:'application/json;charset=UTF-8',
+            success:function(result){
+
+                window.location.reload();
+
+
+            },
+            error:function(){
+
+            }
+        })
+    }
 </script>
 <!--<script src="../bootstrap-table/js/btTable1.js"></script>-->
 <!--<script src="../bootstrap-table/js/btTable2.js"></script>-->

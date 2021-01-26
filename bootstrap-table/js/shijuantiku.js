@@ -33,7 +33,7 @@ function load(){
 
         columns:[
             {
-                title:'行号',
+
                 checkbox:true,
             },
             {

@@ -129,11 +129,11 @@
                         data:JSON.stringify(dataJSON),
                         contentType:'application/json;charset=UTF-8',
                         success:function(result){
-                                console.log(result)
+                                // console.log(result)
                                 if (result==1) {
                                         layer.alert("添加成功！",function(){
                                                 window.parent.location.reload();//刷新父页面
-                                                parent.layer.close(index);//关闭弹出层
+                                                parent.layer.close();//关闭弹出层
                                         });
                                 }
                                 if (result==2){

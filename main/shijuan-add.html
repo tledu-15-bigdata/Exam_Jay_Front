@@ -48,7 +48,7 @@
             <td></td>
             <td>试卷类型:</td>
             <td><input type="radio" name="shi" value="普通试卷">普通试卷
-                <input type="radio" name="shi" value="随机试卷">随机试卷
+                <input type="radio" name="shi" value="模拟试卷">模拟试卷
 
             </td>
         </tr>
@@ -114,7 +114,7 @@
             data:JSON.stringify(dataJSON),
             contentType:'application/json;charset=UTF-8',
             success:function(result){
-                console.log(result)
+
                 if (result==1) {
                     layer.alert("添加成功！",function(){
                         window.parent.location.reload();//刷新父页面
