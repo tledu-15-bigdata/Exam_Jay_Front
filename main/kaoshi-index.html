@@ -77,7 +77,27 @@
         localStorage.setItem("paperid",$("#Codes_text").val());
         localStorage.setItem("currentPage",1);
 
-        window.location.href="kaoshi-start.html"
+        var dataJSON={}
+        dataJSON.gradeLoginid=$("#userid").val();
+        dataJSON.gradeName=$("#username").val();
+        dataJSON.paperId=$("#Codes_text").val();
+        $.ajax({
+            url:'http://localhost:8080/Exam_Jay_SSM/selectGrade',
+            type:'POST',
+            data:JSON.stringify(dataJSON),
+            contentType:'application/json;charset=UTF-8',
+            success:function(result){
+                if (result==0){
+                    window.location.href="kaoshi-start.html"
+                }else{
+                    alert("登陆失败，请重试！")
+                }
+
+
+
+            }
+        })
+
 
     })
 </script>

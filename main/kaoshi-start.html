@@ -74,10 +74,13 @@
         var papercId=$("#span1").text()
         var answer=$("#answer").val();
         var answers = JSON.parse(localStorage.getItem("answers"))
+        var tt="";
         answers[currentPage-1]=answer;
         localStorage.setItem("answers",JSON.stringify(answers))
         if (currentPage==totalPage+1){
             alert("考试结束")
+            currentPage=currentPage-1;
+            tt="123456"
         }
         if (currentPage==totalPage){
             $("#nextPage").text("提交")
@@ -89,6 +92,7 @@
             dataJSON.gradecLoginid=userid;
             dataJSON.gradecAnswer=answer;
             dataJSON.papercId=papercId;
+            dataJSON.finishcTime=tt;
 
             $.ajax({
                 url:'http://localhost:8080/Exam_Jay_SSM/selectExam1',
