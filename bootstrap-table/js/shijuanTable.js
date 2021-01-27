@@ -99,11 +99,17 @@ function load(){
                     let n='<a href="javascript:void(0);" onclick="stopPaper(\''+row.paperName+'\')">关闭试卷</a>'
                     let c='<a href="javascript:void(0);" onclick="lookPaper(\''+row.paperId+'\')">查看试卷</a>'
                     let s='<a href="javascript:void(0);" onclick="startExam(\''+row.paperId+'\')">开始考试</a>'
-                    return d+" "+m+" "+u+" "+n+" "+c+" "+s
+                    let xiangqing='<a href="javascript:void(0);" onclick="loocExam(\''+row.paperId+'\')">考试详情</a>'
+                    return d+" "+m+" "+u+" "+n+" "+c+" "+s+" "+xiangqing
                 }
             }
         ]
     })
+}
+
+function loocExam(paperId) {
+    localStorage.setItem("lookPaperId",paperId);
+    window.location.href="kaoshi-xiangqing.html";
 }
 
 function startExam(paperId) {
@@ -146,7 +152,7 @@ function startPaper(paperName){
         contentType:'application/json;charset=UTF-8',
         type:'POST',
         success:function(result){
-            console.log(result)
+            // console.log(result)
             //将返回的result数据，渲染到页面上
             if(result==1){
                 //删除成功-->重新渲染表格的数据
