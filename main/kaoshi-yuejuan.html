@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天亮教育在线考试系统-阅卷评分</title>
+    <link rel="stylesheet" href="css/yuejuan.css">
+    <link rel="stylesheet" href="./css/x-admin.css" media="all">
+    <link rel="stylesheet" href="">
+</head>
+<body>
+<div class="x-nav"> <span> <a>首页</a>-- <a>试卷管理</a> </span> <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a> </div>
+    <div id="dade">
+        <div id="tou"><b>考生：<span id="userid"></span>&nbsp;<span id="username"></span>&nbsp;&nbsp;得分：<span id="score"></span>&nbsp;&nbsp;正确率：<span id="zhengquelv">0.5</span></b></div>
+        <div id="zhengwen">
+            <table id="shijuan1"></table>
+        </div>
+    </div>
+</body>
+<script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
+<script>
+window.onload=function () {
+
+    var dataJSON={}
+    dataJSON.paperId=localStorage.getItem("yuejuan-paperId");
+    dataJSON.gradecName=localStorage.getItem("yuejuan-username");
+    $.ajax({
+        url:'http://localhost:8080/Exam_Jay_SSM/selectYuejuan',
+        type:'POST',
+        data:JSON.stringify(dataJSON),
+        contentType:'application/json;charset=UTF-8',
+        success:function(data){
+            $("#userid").text(localStorage.getItem("yuejuan-userid"))
+            $("#username").text(localStorage.getItem("yuejuan-username"))
+            $("#score").text(localStorage.getItem("yuejuan-score"))
+            $("#zhengquelv").text(localStorage.getItem("yuejuan-zql"))
+            var str=""
+            for (i=0;i<data.length;i++){
+                var t=i+1;
+                if (data[i].gradecType=="选择题"){
+                    str = "<tr><td>"+"<b>[</b>"+"<b>"+data[i].gradecType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+t+"、</b>" + data[i].gradecTitle+ /*"&nbsp;"+"&nbsp;"+"("+data[i].gradecScore+")"+*/"<br>"
+                        +"&nbsp;"+"&nbsp;" +"A:"+"&nbsp;"+data[i].gradecA+"<br>"+"&nbsp;"+"&nbsp;" +"B:"+"&nbsp;"+data[i].gradecB+"<br/>"+"&nbsp;"+"&nbsp;" +"C:"+"&nbsp;"+data[i].gradecC+"<br/>"+"&nbsp;"+"&nbsp;" +"D:"+"&nbsp;"+data[i].gradecD
+                        +"<br>"+"正确答案："+data[i].gradecRightanswer+ "&nbsp;"+ "&nbsp;"+"考生答案："+data[i].gradecAnswer+ "&nbsp;"+ "&nbsp;"+"答题得分："+data[i].gradecScore+ "<br/>"+ "<br/>"+"<hr/>"+"</td>"+"</tr>";
+                }else{
+                    str = "<tr><td>"+"<b>[</b>"+"<b>"+data[i].gradecType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+t+"、</b>" + data[i].gradecTitle+/* "&nbsp;"+"&nbsp;"+"("+data[i].gradecScore+")"+*/
+                        "<br>"+"正确答案："+"<br/>"+" <span> <font color='#a52a2a'>"+data[i].gradecRightanswer+"</font></span>"+"<br/>"+"考生答案："+"<br/>"+" <span> <font color='#a52a2a'>"+data[i].gradecAnswer+"</font></span>"+"<br/>"+"答题得分："+data[i].gradecScore+ "<br/>"+ "<br/>"+"<hr/>"+"</td>"+"</tr>";
+                }
+                //追加到table中
+                $("#shijuan1").append(str);
+
+            }
+
+
+
+
+        }
+    })
+}
+</script>
+</html>

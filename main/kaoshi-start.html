@@ -43,14 +43,14 @@
             success:function(result){
                 $("#kaoti").html("");
                 var data=result.list[0];
-
+                var str="";
 
                 if (data.papercType=="选择题"){
-                    var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+currentPage+"、</b>" + data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                     str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+currentPage+"、</b>" + data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
                         +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"+"<br>"+"&nbsp;"+"&nbsp;" +"A:"+"&nbsp;"+data.papercA+"<br>"+"&nbsp;"+"&nbsp;" +"B:"+"&nbsp;"+data.papercB+"<br>"+"&nbsp;"+"&nbsp;" +"C:"+"&nbsp;"+data.papercC+"<br>"+"&nbsp;"+"&nbsp;" +"D:"+"&nbsp;"+data.papercD+"<br>"
                         +"<br>"+"<br>"+"答案:"+" <input type='text' id='answer'>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
                 }else{
-                    var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+ "<b>"+currentPage+"、</b>"+data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                     str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+ "<b>"+currentPage+"、</b>"+data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
                         +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"
                         +"答案:"+" <textarea id='answer' cols='30' rows='10'></textarea>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
                 }
@@ -78,9 +78,10 @@
         answers[currentPage-1]=answer;
         localStorage.setItem("answers",JSON.stringify(answers))
         if (currentPage==totalPage+1){
-            alert("考试结束")
+            alert("提交成功")
             currentPage=currentPage-1;
             tt="123456"
+            window.location.href="kaoshi-index.html"
         }
         if (currentPage==totalPage){
             $("#nextPage").text("提交")
