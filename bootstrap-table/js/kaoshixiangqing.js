@@ -7,6 +7,7 @@ function reLoad(){
 }
 
 function load(){
+    var paperId=localStorage.getItem("lookPaperId");
     $("#table").bootstrapTable({
         // url:"http://192.168.43.189:8080/Exam_Jay_SSM/selectEx",
         url:'http://localhost:8080/Exam_Jay_SSM/selectGradeAll',
@@ -23,7 +24,8 @@ function load(){
         queryParams : function(params) {//上传服务器的参数
             var temp = {
                 offset :params.offset,// SQL语句起始索引
-                pageNumber : params.limit  // 每页显示数量
+                pageNumber : params.limit,  // 每页显示数量
+                paperId:paperId
             };
             return JSON.stringify(temp);
         },

@@ -23,7 +23,19 @@
         $("#nextPage").text("下一页")
         var currentPage=Number(localStorage.getItem("currentPage"))-1;
         var paperId=localStorage.getItem("paperid");
-
+        // var currentPage=Number(localStorage.getItem("currentPage"))+1;
+        var totalPage=Number(localStorage.getItem("totalPage"));
+        // var paperId=localStorage.getItem("paperid");
+        var userName=localStorage.getItem("username");
+        var userid=localStorage.getItem("userid");
+        var papercId=$("#span1").text()
+        var answer=$("#answer").val();
+        alert(answer)
+        var answers = JSON.parse(localStorage.getItem("answers"))
+        // var tt="";
+        answers[currentPage+1]=answer;
+        localStorage.setItem("answers",JSON.stringify(answers))
+        // alert(currentPage)
 
         if (currentPage<1){
             currentPage=1;
@@ -35,6 +47,13 @@
         var dataJSON={}
         dataJSON.currentPage=currentPage;
         dataJSON.paperId=paperId;
+        // dataJSON.currentPage=currentPage;
+        // dataJSON.paperId=paperId;
+        dataJSON.gradecName=userName;
+        dataJSON.gradecLoginid=userid;
+        dataJSON.gradecAnswer=answer;
+        dataJSON.papercId=papercId;
+        // dataJSON.finishcTime=tt;
         $.ajax({
             url:'http://localhost:8080/Exam_Jay_SSM/selectExam1',
             type:'POST',
@@ -43,14 +62,14 @@
             success:function(result){
                 $("#kaoti").html("");
                 var data=result.list[0];
-                var str="";
+
 
                 if (data.papercType=="选择题"){
-                     str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+currentPage+"、</b>" + data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                     var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+currentPage+"、</b>" + data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
                         +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"+"<br>"+"&nbsp;"+"&nbsp;" +"A:"+"&nbsp;"+data.papercA+"<br>"+"&nbsp;"+"&nbsp;" +"B:"+"&nbsp;"+data.papercB+"<br>"+"&nbsp;"+"&nbsp;" +"C:"+"&nbsp;"+data.papercC+"<br>"+"&nbsp;"+"&nbsp;" +"D:"+"&nbsp;"+data.papercD+"<br>"
                         +"<br>"+"<br>"+"答案:"+" <input type='text' id='answer'>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
                 }else{
-                     str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+ "<b>"+currentPage+"、</b>"+data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
+                     var str = "<tr><td>"+"<b>[</b>"+"<b>"+data.papercType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+ "<b>"+currentPage+"、</b>"+data.papercTitle+ "&nbsp;"+"&nbsp;"+"("+data.papercScore+")"+"<br>"+"&nbsp;"+"&nbsp;"
                         +"<font color='gray'size='2'>题目难度:</font>" +"<font color='gray'size='2'>"+data.papercDegree+"</font>"+"<br>"
                         +"答案:"+" <textarea id='answer' cols='30' rows='10'></textarea>"+"</td>"+"<td>"+"<span id='span1' hidden>"+data.papercId+"</span>"+"</td>"+"</tr>";
                 }
@@ -61,6 +80,7 @@
                 localStorage.setItem("totalPage",result.totalPage)
                 // currentPage=currentPage+1;
                 localStorage.setItem("currentPage",currentPage)
+                // alert(currentPage)
             }
         })
     })
@@ -119,6 +139,7 @@
                     $("#answer").val(a[currentPage]);
                     // currentPage=currentPage+1;
                     localStorage.setItem("currentPage",currentPage)
+                    // alert(currentPage)
 
                 }
 
@@ -159,6 +180,7 @@
                     localStorage.setItem("totalPage",result.totalPage)
                     // currentPage=currentPage+1;
                     localStorage.setItem("currentPage",currentPage)
+                    // alert(currentPage)
                 }
             })
         }
@@ -198,6 +220,7 @@
                 localStorage.setItem("totalPage",result.totalPage)
                 // currentPage=currentPage+1;
                 localStorage.setItem("currentPage",currentPage)
+                // alert(currentPage)
             }
         })
 
