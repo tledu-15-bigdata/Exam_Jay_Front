@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加菜单</title>
+</head>
+<body>
+<script src="../bootstrap-table/js/jquery-3.2.1.min.js"></script>
+<h3>请输入要添加的菜单名:</h3><input type="text" id="caidantext">
+<h3>请输入菜单对应链接:</h3><input type="text" id="caidanhref">
+<br>
+<button onclick="tianjia()">添加</button>
+
+</body>
+<script>
+    function tianjia(){
+        var dataJSON={}
+        dataJSON.menuName=$("#caidantext").val();
+        dataJSON.menuHref=$("#caidanhref").val();
+        $.ajax({
+            url:'http://localhost:8080/Exam_Jay_SSM/addMenu',
+            type:'POST',
+            data:JSON.stringify(dataJSON),
+            contentType:'application/json;charset=UTF-8',
+            success:function(result){
+                console.log(result)
+                if (result==1) {
+                    // alert("登录成功！")
+                    // window.location.href="main/index.html"
+                    alert("添加成功！")
+                }else{
+                    alert("添加失败！")
+                }
+
+
+            },
+            error:function(){
+
+            }
+        });
+    }
+</script>
+</html>
