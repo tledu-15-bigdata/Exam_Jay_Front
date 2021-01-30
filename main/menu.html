@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>菜单</title>
 <link rel="stylesheet" type="text/css" href="css/public.css">
-
+<!--	<meta http-equiv="refresh" content="2">-->
 <!--<script type="text/javascript" src="js/public.js"></script>-->
 
 <head></head>
@@ -110,52 +110,8 @@
 					<!--                    <img class="icon3" src="images/coin19.png" />-->
 					<!--                    <img class="icon4" src="images/coin20.png" />-->
 				</dt>
-				<!--				<dd>-->
-				<!--					<img class="coin11" src="images/coin111.png" />-->
-				<!--                    <img class="coin22" src="images/coin222.png" />-->
-				<!--                    <a href="test.html" target="main" class="cks">心理诊断测试</a>-->
-				<!--                    <img class="icon5" src="images/coin21.png" />-->
-				<!--				</dd>-->
-			</dl>
-<!--			<dl class="system_log">-->
-<!--				<dt>-->
-<!--					&lt;!&ndash;					<img class="icon1" src="images/coin15.png" />&ndash;&gt;-->
-<!--					&lt;!&ndash;                    <img class="icon2" src="images/coin16.png" />&ndash;&gt;-->
-<!--					&lt;!&ndash;                     &ndash;&gt;-->
-<!--					<a href="tiku.html" target="main" class="cks" ></a>-->
-<!--					&lt;!&ndash;                    <img class="icon3" src="images/coin19.png" />&ndash;&gt;-->
-<!--					&lt;!&ndash;                    <img class="icon4" src="images/coin20.png" />&ndash;&gt;-->
-<!--				</dt>-->
-<!--				&lt;!&ndash;				<dd>&ndash;&gt;-->
-<!--				&lt;!&ndash;					<img class="coin11" src="images/coin111.png" />&ndash;&gt;-->
-<!--				&lt;!&ndash;                    <img class="coin22" src="images/coin222.png" />&ndash;&gt;-->
-<!--				&lt;!&ndash;                    <a href="test.html" target="main" class="cks">心理诊断测试</a>&ndash;&gt;-->
-<!--				&lt;!&ndash;                    <img class="icon5" src="images/coin21.png" />&ndash;&gt;-->
-<!--				&lt;!&ndash;				</dd>&ndash;&gt;-->
-<!--			</dl>-->
 
-<!--            &lt;!&ndash;试卷管理&ndash;&gt;-->
-<!--            <dl class="system_log">-->
-<!--				<dt>-->
-<!--&lt;!&ndash;					<img class="icon1" src="images/coin09.png" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    <img class="icon2" src="images/coin10.png" />&ndash;&gt;-->
-<!--                    <a href="shijuan.html" target="main" class="cks" id="shijuan"></a>-->
-<!--&lt;!&ndash;                    <img class="icon3" src="images/coin19.png" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    <img class="icon4" src="images/coin20.png" />&ndash;&gt;-->
-<!--				</dt>-->
-<!--&lt;!&ndash;				<dd>&ndash;&gt;-->
-<!--&lt;!&ndash;					<img class="coin11" src="images/coin111.png" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    <img class="coin22" src="images/coin222.png" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    <a href="tiku.html" target="main" class="cks">档案管理</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <img class="icon5" src="images/coin21.png" />&ndash;&gt;-->
-<!--&lt;!&ndash;				</dd>&ndash;&gt;-->
-<!--&lt;!&ndash;                <dd>&ndash;&gt;-->
-<!--&lt;!&ndash;					<img class="coin11" src="images/coin111.png" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    <img class="coin22" src="images/coin222.png" />&ndash;&gt;-->
-<!--&lt;!&ndash;                    <a href="Shuju-one.html" target="main" class="cks">数据备份</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <img class="icon5" src="images/coin21.png" />&ndash;&gt;-->
-<!--&lt;!&ndash;				</dd>&ndash;&gt;-->
-<!--			</dl>-->
+			</dl>
 
 			<dl class="system_log">
 				<dt>
@@ -263,7 +219,7 @@
 	</div>
 
 </body>
-<script type="text/javascript" src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
+<script src="../bootstrap-table/js/jquery-3.5.1.min.js"></script>
 <script>
 	window.onload=function (){
 		// $("#tiku13").text("题库管理")
@@ -276,23 +232,24 @@
 		// console.log(array)
 		$.ajax({
 			// url:'http://192.168.43.189:8080/Exam_Jay_SSM/userLogin',
-			url:'http://localhost:8080/Exam_Jay_SSM/selectCaidan',
+			url:'http://localhost:8080/Exam_Jay_SSM/menuSelete',
 			type:'POST',
-			//data:JSON.stringify(dataJSON),
+			// data:JSON.stringify(dataJSON),
 			contentType:'application/json;charset=UTF-8',
 			success:function(result){
-				console.log(result)
+				// console.log(result)
 				var array=document.getElementsByClassName("cks");
-				alert(array)
+				// console.log(array)
 				if(result !=null || result !=""){
-					for (i=0;i< result.length;i++){
-						array[i].text(result[i].menuName)
-						array[i].href(result[i].menuHref)
-
+					for (i=0;i<result.length;i++){
+						console.log(array[i])
+						array[i].text=result[i].menuName
+						array[i].href=result[i].menuHref
+						console.log(array[i])
 					}
 				}
 
-					window.location.href="main/index.html"
+					// window.location.href="index.html"
 
 
 

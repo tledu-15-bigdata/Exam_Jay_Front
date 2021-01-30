@@ -36,7 +36,9 @@ window.onload=function () {
             var str=""
             for (i=0;i<data.length;i++){
                 var t=i+1;
+                if (data[i].gradecScore)
                 if (data[i].gradecType=="选择题"){
+
                     str = "<tr><td>"+"<b>[</b>"+"<b>"+data[i].gradecType+"</b>" +"<b>]</b>"+ "&nbsp;" +"&nbsp;"+"<b>"+t+"、</b>" + data[i].gradecTitle+ /*"&nbsp;"+"&nbsp;"+"("+data[i].gradecScore+")"+*/"<br>"
                         +"&nbsp;"+"&nbsp;" +"A:"+"&nbsp;"+data[i].gradecA+"<br>"+"&nbsp;"+"&nbsp;" +"B:"+"&nbsp;"+data[i].gradecB+"<br/>"+"&nbsp;"+"&nbsp;" +"C:"+"&nbsp;"+data[i].gradecC+"<br/>"+"&nbsp;"+"&nbsp;" +"D:"+"&nbsp;"+data[i].gradecD
                         +"<br>"+"正确答案："+data[i].gradecRightanswer+ "&nbsp;"+ "&nbsp;"+"考生答案："+data[i].gradecAnswer+ "&nbsp;"+ "&nbsp;"+"答题得分："+data[i].gradecScore+ "<br/>"+ "<br/>"+"<hr/>"+"</td>"+"</tr>";

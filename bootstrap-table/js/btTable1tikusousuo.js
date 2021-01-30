@@ -32,9 +32,9 @@ function load(){
 
 
         columns:[
-            {
-                checkbox:true
-            },
+            // {
+            //     checkbox:true
+            // },
             {
                 title:'行号',
                 align:"center",//水平居中

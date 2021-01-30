@@ -56,7 +56,7 @@
 /*iframe内样式*/
 
 .x-body{
-  border: 1px solid red;
+  /*border: 1px solid red;*/
   padding: 20px;
   /*background: url("../images/img1.jpg");*/
 }

@@ -109,8 +109,8 @@ function modifyGoods(menuId,menuName,menuHref,){
                 let childBody= layer.getChildFrame('body',index);
 
                 //在childBody子页面body区域中find（查找）input标签name属性是xxx的那个input对象，给其设置值为xxx
-                $(childBody).find('text[id=caidantext]').val(menuName);
-                $(childBody).find('text[id=caidanhref]').val(menuHref);
+                $(childBody).find('input[id=caidantext]').val(menuName);
+                $(childBody).find('input[id=caidanhref]').val(menuHref);
                 //获取子页面JS对象
             }
         });

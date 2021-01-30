@@ -103,8 +103,8 @@
     function deleteAll(){
         var titles="";
         $("input[type='checkbox']:checked").each(function () {
-            titles+=$(this).parent().next().next().next().text()+","
-            console.log($(this).parent().next().next().next().text())
+            titles+=$(this).parent().next().next().next().next().text()+","
+            // console.log($(this).parent().next().next().next().text())
         })
         var dataJSON={};
         dataJSON.paperName=titles;

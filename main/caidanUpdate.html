@@ -12,6 +12,7 @@
 <button onclick="tianjia()">修改</button>
 
 </body>
+<script src="../js/layer.js"></script>
 <script>
     function tianjia(){
         var menuId=localStorage.getItem("menuId")
@@ -29,7 +30,11 @@
                 if (result==1) {
                     // alert("登录成功！")
                     // window.location.href="main/index.html"
+
+
                     alert("修改成功！")
+                    layer.close()
+                    window.location.reload()
                 }else{
                     alert("修改失败！")
                 }
@@ -41,5 +46,6 @@
             }
         });
     }
+
 </script>
 </html>

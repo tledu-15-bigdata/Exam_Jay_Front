@@ -51,8 +51,8 @@
   <div class="tools">
     <ul class="toolbar">
       <li onclick="deleteAll()"><span><img src="images/t03.png" /></span>批量删除</li>
-      <li onclick="user_management_add('添加选择题','xuanze-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加选择</li>
-      <li onclick="user_management_add('添加简答题','jianda-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加简答</li>
+<!--      <li onclick="user_management_add('添加选择题','xuanze-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加选择</li>-->
+<!--      <li onclick="user_management_add('添加简答题','jianda-add.html','1000','600')"><span><img src="images/t01.png" /></span>添加简答</li>-->
     </ul>
 <!--    <span class="x-right" style="line-height:25px">共有数据：88 条</span></xblock>-->
   </div>
@@ -83,7 +83,7 @@
 <script>
     function deleteAll() {
         var titles="";
-        $("#table1 input[type='checkbox']:checked").each(function () {
+        $("#table2 input[type='checkbox']:checked").each(function () {
             titles+=$(this).parent().next().next().next().text()+","
             // console.log($(this).parent().next().next().next().text())
         })
