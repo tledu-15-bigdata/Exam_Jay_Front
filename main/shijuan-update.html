@@ -109,7 +109,7 @@
 
             dataJSON.paperId = localStorage.getItem("paperId");
             $.ajax({
-                url: 'http://localhost:8080/Exam_Jay_SSM/paperUpdate',
+                url: 'http://101.200.56.184:8080/Exam_Jay_SSM/paperUpdate',
                 type: 'POST',
                 data: JSON.stringify(dataJSON),
                 contentType: 'application/json;charset=UTF-8',

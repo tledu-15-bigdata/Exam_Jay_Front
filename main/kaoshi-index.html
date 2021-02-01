@@ -82,7 +82,7 @@
         dataJSON.gradeName=$("#username").val();
         dataJSON.paperId=$("#Codes_text").val();
         $.ajax({
-            url:'http://localhost:8080/Exam_Jay_SSM/selectGrade',
+            url:'http://101.200.56.184:8080/Exam_Jay_SSM/selectGrade',
             type:'POST',
             data:JSON.stringify(dataJSON),
             contentType:'application/json;charset=UTF-8',

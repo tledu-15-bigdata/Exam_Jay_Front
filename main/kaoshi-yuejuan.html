@@ -24,7 +24,7 @@ window.onload=function () {
     dataJSON.paperId=localStorage.getItem("yuejuan-paperId");
     dataJSON.gradecName=localStorage.getItem("yuejuan-username");
     $.ajax({
-        url:'http://localhost:8080/Exam_Jay_SSM/selectYuejuan',
+        url:'http://101.200.56.184:8080/Exam_Jay_SSM/selectYuejuan',
         type:'POST',
         data:JSON.stringify(dataJSON),
         contentType:'application/json;charset=UTF-8',

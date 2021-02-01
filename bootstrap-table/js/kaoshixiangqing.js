@@ -10,7 +10,7 @@ function load(){
     var paperId=localStorage.getItem("lookPaperId");
     $("#table").bootstrapTable({
         // url:"http://192.168.43.189:8080/Exam_Jay_SSM/selectEx",
-        url:'http://localhost:8080/Exam_Jay_SSM/selectGradeAll',
+        url:'http://101.200.56.184:8080/Exam_Jay_SSM/selectGradeAll',
         method:"POST",
         dataType:"JSON",
         striped : true, //是否显示行间隔色

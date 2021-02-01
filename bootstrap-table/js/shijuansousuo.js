@@ -11,7 +11,7 @@ function reLoad(){
 function load(){
     $("#tableshi").bootstrapTable({
         // url:"http://192.168.43.189:8080/Exam_Jay_SSM/selectEx",
-        url:'http://localhost:8080/Exam_Jay_SSM/paperSelectMohu',
+        url:'http://101.200.56.184:8080/Exam_Jay_SSM/paperSelectMohu',
         method:"POST",
         dataType:"JSON",
         striped : true, //是否显示行间隔色
@@ -107,7 +107,7 @@ function load(){
 }
 
 function startPaper(paperName){
-    let url="http://localhost:8080/Exam_Jay_SSM/statusUpdate"
+    let url="http://101.200.56.184:8080/Exam_Jay_SSM/statusUpdate"
     var dataJSON={};
 
     dataJSON.paperName=paperName;
@@ -137,7 +137,7 @@ function startPaper(paperName){
 
 
 function stopPaper(paperName){
-    let url="http://localhost:8080/Exam_Jay_SSM/statusUpdate"
+    let url="http://101.200.56.184:8080/Exam_Jay_SSM/statusUpdate"
     var dataJSON={};
 
     dataJSON.paperName=paperName;
@@ -202,7 +202,7 @@ function modifyGoods(paperName,paperClassify,paperType,
 
 function removeData(paperName){
     if(paperName){
-        let url="http://localhost:8080/Exam_Jay_SSM/paperDelete"
+        let url="http://101.200.56.184:8080/Exam_Jay_SSM/paperDelete"
         var dataJSON={};
 
         dataJSON.paperName=paperName;

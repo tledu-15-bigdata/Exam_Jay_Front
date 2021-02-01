@@ -21,7 +21,7 @@
         dataJSON.menuHref=$("#caidanhref").val();
         dataJSON.menuId=menuId;
         $.ajax({
-            url:'http://localhost:8080/Exam_Jay_SSM/updateMenu',
+            url:'http://101.200.56.184:8080/Exam_Jay_SSM/updateMenu',
             type:'POST',
             data:JSON.stringify(dataJSON),
             contentType:'application/json;charset=UTF-8',

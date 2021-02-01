@@ -11,7 +11,7 @@ function reLoad(){
 function load(){
     $("#table1").bootstrapTable({
         // url:"http://192.168.43.189:8080/Exam_Jay_SSM/selectEx",
-        url:'http://localhost:8080/Exam_Jay_SSM/userSelectAll',
+        url:'http://101.200.56.184:8080/Exam_Jay_SSM/userSelectAll',
         method:"POST",
         dataType:"JSON",
         striped : true, //是否显示行间隔色
@@ -90,7 +90,7 @@ function load(){
 
 function removeData(userAcc){
     if(userAcc){
-        let url="http://localhost:8080/Exam_Jay_SSM/userDelete"
+        let url="http://101.200.56.184:8080/Exam_Jay_SSM/userDelete"
         var dataJSON={};
 
         dataJSON.userAcc=userAcc;
@@ -115,7 +115,7 @@ function removeData(userAcc){
 
 function startData(userAcc){
     if(userAcc){
-        let url="http://localhost:8080/Exam_Jay_SSM/startStatus"
+        let url="http://101.200.56.184:8080/Exam_Jay_SSM/startStatus"
         var dataJSON={};
 
         dataJSON.userAcc=userAcc;
@@ -142,7 +142,7 @@ function startData(userAcc){
 
 function stopData(userAcc){
     if(userAcc){
-        let url="http://localhost:8080/Exam_Jay_SSM/stopStatus"
+        let url="http://101.200.56.184:8080/Exam_Jay_SSM/stopStatus"
         var dataJSON={};
 
         dataJSON.userAcc=userAcc;

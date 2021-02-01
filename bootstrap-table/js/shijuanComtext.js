@@ -4,7 +4,7 @@ window.onload=function requestData(){
     dataJSON.paperId=a;
 
     $.ajax({
-        url: "http://localhost:8080/Exam_Jay_SSM/papercSelect",
+        url: "http://101.200.56.184:8080/Exam_Jay_SSM/papercSelect",
         type: "post",
         dataType: "json",
         data:JSON.stringify(dataJSON),

@@ -11,7 +11,7 @@ function reLoad(){
 function load(){
     $("#table1").bootstrapTable({
         // url:"http://192.168.43.189:8080/Exam_Jay_SSM/selectEx",
-        url:'http://localhost:8080/Exam_Jay_SSM/selectMenu',
+        url:'http://101.200.56.184:8080/Exam_Jay_SSM/selectMenu',
         method:"POST",
         dataType:"JSON",
         striped : true, //是否显示行间隔色
@@ -121,7 +121,7 @@ function modifyGoods(menuId,menuName,menuHref,){
 
 function removeData(menuId){
     if(menuId){
-        let url="http://localhost:8080/Exam_Jay_SSM/deleteMenu"
+        let url="http://101.200.56.184:8080/Exam_Jay_SSM/deleteMenu"
         var dataJSON={};
 
         dataJSON.menuId=menuId;

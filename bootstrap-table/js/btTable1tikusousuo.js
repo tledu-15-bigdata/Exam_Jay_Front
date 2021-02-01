@@ -10,7 +10,7 @@ function load(){
     var str=localStorage.getItem("mark1");
     $("#table3").bootstrapTable({
         // url:"http://192.168.43.189:8080/Exam_Jay_SSM/selectEx",
-        url:'http://localhost:8080/Exam_Jay_SSM/selectKeyword',
+        url:'http://101.200.56.184:8080/Exam_Jay_SSM/selectKeyword',
         method:"POST",
         dataType:"JSON",
         striped : true, //是否显示行间隔色
@@ -91,7 +91,7 @@ function load(){
 function addData(examinationTitle,examinationA,examinationB,
                  examinationC,examinationD,examinationAnswer,
                  examinationScore,examinationDegree,examinationType){
-    let  url="http://localhost:8080/Exam_Jay_SSM/papercAdd"
+    let  url="http://101.200.56.184:8080/Exam_Jay_SSM/papercAdd"
     var b=localStorage.getItem("paperId");
     var dataJSON={};
     dataJSON.paperId=b;

@@ -55,7 +55,7 @@
         dataJSON.papercId=papercId;
         // dataJSON.finishcTime=tt;
         $.ajax({
-            url:'http://localhost:8080/Exam_Jay_SSM/selectExam1',
+            url:'http://101.200.56.184:8080/Exam_Jay_SSM/selectExam1',
             type:'POST',
             data:JSON.stringify(dataJSON),
             contentType:'application/json;charset=UTF-8',
@@ -116,7 +116,7 @@
             dataJSON.finishcTime=tt;
 
             $.ajax({
-                url:'http://localhost:8080/Exam_Jay_SSM/selectExam1',
+                url:'http://101.200.56.184:8080/Exam_Jay_SSM/selectExam1',
                 type:'POST',
                 data:JSON.stringify(dataJSON),
                 contentType:'application/json;charset=UTF-8',
@@ -156,7 +156,7 @@
             dataJSON.gradecAnswer=answer;
             dataJSON.papercId=papercId;
             $.ajax({
-                url:'http://localhost:8080/Exam_Jay_SSM/selectExam1',
+                url:'http://101.200.56.184:8080/Exam_Jay_SSM/selectExam1',
                 type:'POST',
                 data:JSON.stringify(dataJSON),
                 contentType:'application/json;charset=UTF-8',
@@ -196,7 +196,7 @@
         dataJSON.currentPage=currentPage;
         dataJSON.paperId=localStorage.getItem("paperid");
         $.ajax({
-            url:'http://localhost:8080/Exam_Jay_SSM/selectExam1',
+            url:'http://101.200.56.184:8080/Exam_Jay_SSM/selectExam1',
             type:'POST',
             data:JSON.stringify(dataJSON),
             contentType:'application/json;charset=UTF-8',

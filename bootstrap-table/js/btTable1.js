@@ -13,7 +13,7 @@ function load(){
 
     $("#table2").bootstrapTable({
         // url:"http://192.168.43.189:8080/Exam_Jay_SSM/selectEx",
-        url:'http://localhost:8080/Exam_Jay_SSM/selectKeyword',
+        url:'http://101.200.56.184:8080/Exam_Jay_SSM/selectKeyword',
         method:"POST",
         dataType:"JSON",
         striped : true, //是否显示行间隔色
@@ -161,7 +161,7 @@ function modifyGoods(examinationTitle,examinationA,examinationB,
 
 function removeData(examinationTitle){
     if(examinationTitle){
-        let url="http://localhost:8080/Exam_Jay_SSM/deleteEx"
+        let url="http://101.200.56.184:8080/Exam_Jay_SSM/deleteEx"
         var dataJSON={};
 
         dataJSON.examinationTitle=examinationTitle;
